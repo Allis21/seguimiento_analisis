@@ -73,7 +73,7 @@ class ReaderImplementation:
         # PLOT AND OUTPUT FILE GENERATION
         #self.print_results()    # Prints the filter results
         #self.generate_output_files()  # Generates the output files
-        self.plot_results()     # Generates a bar graph for the execution results
+        #self.plot_results()     # Generates a bar graph for the execution results
         self.process_abstracts()  # Processes the abstracts and generates a frequency table
 
     def separate_entry_keys(self, entry):
@@ -198,7 +198,8 @@ class ReaderImplementation:
         print("Output files created")
 
     def process_abstracts(self):
-        pass
+        abstract_processing = AbstractProcessing()
+        abstract_processing.count_keyword_frequencies(self.abstracts_words)
 
     def print_results(self):
         """

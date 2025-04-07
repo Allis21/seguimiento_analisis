@@ -3,7 +3,6 @@
   for the article titles array
 """
 import time
-from reader_resources.abstract_processing import AbstractProcessing
 from sorting_algorithms.binary_insertion import BinaryInsertionSort
 from sorting_algorithms.bitonic_sort import BitonicSort
 from sorting_algorithms.bucket_sort import BucketSort
@@ -35,7 +34,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             shellSort.sort(arr_copy)
-            return "Shell", arr_copy
+            return "Shell"
         except RecursionError:
             print("Error executing the Shell sort algorithm")
             return -1
@@ -48,7 +47,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             bidirectional_bubble_sort.sort(arr_copy)
-            return "Bidirectional Bubble", arr_copy
+            return "Bidirectional Bubble"
         except RecursionError:
             print("Error executing the Bidirectional Bubble sort algorithm")
             return -1
@@ -61,7 +60,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             bubble_sort.sort(arr_copy)
-            return "Bubble", arr_copy
+            return "Bubble"
         except RecursionError:
             print("Error executing the Bubble sort algorithm")
             return -1
@@ -75,7 +74,7 @@ class AlgorithmsExecution:
 
             arr_copy = arr
             BinaryInsertionSort.sort_in_place(arr_copy)
-            return "Binary", arr_copy
+            return "Binary"
         except RecursionError:
             print("Error executing the Binary insertion algorithm")
             return -1
@@ -88,7 +87,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             BitonicSort.sort(arr_copy)
-            return "Bitonic", arr_copy
+            return "Bitonic"
         except RecursionError:
             print("Error on recusion Bitonic sort method")
             return -1
@@ -104,8 +103,8 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             bucket = BucketSort()
-            result = bucket.sort(arr_copy)
-            return "Bucket", result
+            bucket.sort(arr_copy)
+            return "Bucket"
         except IndexError:
             print("Error executing the Bucket tree algorithm (Index out of range)")
             return -1
@@ -118,7 +117,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             CombSort.comb_sort(arr_copy)
-            return "Comb", arr_copy
+            return "Comb"
         except IndexError:
             print("Error executing the Comb Sort algorithm (Index out of range)")
             return -1
@@ -131,8 +130,8 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             gnome = GnomeSort()
-            result = gnome.sort(arr_copy)
-            return "Gnome", result
+            gnome.sort(arr_copy)
+            return "Gnome"
         except IndexError:
             print("Error executing the Gnome Sort algorithm (Index out of range)")
             return -1
@@ -145,7 +144,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             HeapSort.heap_sort(arr_copy)
-            return "Heap", arr_copy
+            return "Heap"
         except IndexError:
             print("Error executing the Heap Sort algorithm (Index out of range)")
             return -1
@@ -158,7 +157,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             PingeonSort.pigeonhole_sort(arr_copy)
-            return "Pingeon", arr_copy
+            return "Pingeon"
         except IndexError:
             print("Error executing the Pingeon algorithm (Index out of range)")
             return -1
@@ -171,8 +170,8 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             quicksort = StringQuickSort()
-            result = quicksort.run_quick_sort(arr_copy)
-            return "Quick", result
+            quicksort.run_quick_sort(arr_copy)
+            return "Quick"
         except RecursionError:
             print("Error executing the Quick Sort algorithm")
             return -1
@@ -188,8 +187,8 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             radix = RadixSort(arr=arr_copy)
-            result = radix.sort()
-            return "Radix", result
+            radix.sort()
+            return "Radix"
         except IndexError:
             print("Error executing the Radix algorithm (Index out of range)")
             return -1
@@ -202,7 +201,7 @@ class AlgorithmsExecution:
         try:
             arr_copy = arr
             SelectionSort.selection_sort(arr_copy)
-            return "Selection", arr_copy
+            return "Selection"
         except IndexError:
             print("Error executing the Selection Sort algorithm (Index out of range)")
             return -1
@@ -216,7 +215,7 @@ class AlgorithmsExecution:
             arr_copy = arr
             tim = TimSort()
             tim.run_tim_sort(arr_copy)
-            return "Tim", arr_copy
+            return "Tim"
         except IndexError:
             print("Error executing the Tim algorithm (Index out of range)")
             return -1
@@ -230,8 +229,8 @@ class AlgorithmsExecution:
 
             arr_copy = arr
             tree = TreeSort(arr_copy)
-            result = tree.sort()
-            return "Tree", result
+            tree.sort()
+            return "Tree"
         except RecursionError:
             print("Error executing the Tree sort algorithm")
             return -1
@@ -269,7 +268,7 @@ class AlgorithmsExecution:
 
         for algorithm in algorithms:
             start = time.time()  # used to calculate the execution time
-            name, result = algorithm(arr)
+            name = algorithm(arr)
             end = time.time()  # used to calculate the execution time
             # Converts the execution to milisecs
             exec_time = (end - start) * 1000
@@ -279,7 +278,6 @@ class AlgorithmsExecution:
                 algorithms_names.append(name)
                 times.append(exec_time)
 
-                
 
         plotter = ExecutionTimePlotter(
             algorithms=algorithms_names, times=times)
