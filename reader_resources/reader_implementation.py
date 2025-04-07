@@ -71,9 +71,10 @@ class ReaderImplementation:
                 self.separate_entry_keys(entry)
 
         # PLOT AND OUTPUT FILE GENERATION
-        self.print_results()    # Prints the filter results
-        self.generate_output_files()  # Generates the output files
+        #self.print_results()    # Prints the filter results
+        #self.generate_output_files()  # Generates the output files
         self.plot_results()     # Generates a bar graph for the execution results
+        self.process_abstracts()  # Processes the abstracts and generates a frequency table
 
     def separate_entry_keys(self, entry):
         """

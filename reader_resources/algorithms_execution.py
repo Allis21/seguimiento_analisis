@@ -3,6 +3,7 @@
   for the article titles array
 """
 import time
+from reader_resources.abstract_processing import AbstractProcessing
 from sorting_algorithms.binary_insertion import BinaryInsertionSort
 from sorting_algorithms.bitonic_sort import BitonicSort
 from sorting_algorithms.bucket_sort import BucketSort
@@ -15,6 +16,9 @@ from sorting_algorithms.radix_sort import RadixSort
 from sorting_algorithms.selection_sort import SelectionSort
 from sorting_algorithms.tim_sort_algorithm import TimSort
 from sorting_algorithms.tree_sort import TreeSort
+from sorting_algorithms.bidirectional_bubble_sort import bidirectional_bubble_sort
+from sorting_algorithms.shellSort import shellSort
+from sorting_algorithms.bubble_sort import bubble_sort
 from reader_resources.execution_time_plotter import ExecutionTimePlotter
 
 
@@ -22,6 +26,45 @@ class AlgorithmsExecution:
     """
     A class that executes the different sorting algorithms for the article titles array.
     """
+
+    @staticmethod
+    def run_shell_sort(arr):
+        """
+        Run method for Shell Sort algorithm.
+        """
+        try:
+            arr_copy = arr
+            shellSort.sort(arr_copy)
+            return "Shell", arr_copy
+        except RecursionError:
+            print("Error executing the Shell sort algorithm")
+            return -1
+
+    @staticmethod
+    def run_bidirectional_bubble_sort(arr):
+        """
+        Run method for Bidirectional Bubble Sort algorithm.
+        """
+        try:
+            arr_copy = arr
+            bidirectional_bubble_sort.sort(arr_copy)
+            return "Bidirectional Bubble", arr_copy
+        except RecursionError:
+            print("Error executing the Bidirectional Bubble sort algorithm")
+            return -1
+
+    @staticmethod
+    def run_bubble_sort(arr):
+        """
+        Run method for Bubble Sort algorithm.
+        """
+        try:
+            arr_copy = arr
+            bubble_sort.sort(arr_copy)
+            return "Bubble", arr_copy
+        except RecursionError:
+            print("Error executing the Bubble sort algorithm")
+            return -1
 
     @staticmethod
     def run_binary(arr):
@@ -204,6 +247,9 @@ class AlgorithmsExecution:
 
         # List that contains the algorithms to execute
         algorithms = [
+            AlgorithmsExecution.run_bubble_sort,
+            AlgorithmsExecution.run_bidirectional_bubble_sort,
+            AlgorithmsExecution.run_shell_sort,
             AlgorithmsExecution.run_binary,
             AlgorithmsExecution.run_bitonic,
             AlgorithmsExecution.run_bucket,
@@ -232,6 +278,8 @@ class AlgorithmsExecution:
                     f"Algorithm {name} executed in {exec_time} ms for the variable {plotter_name}")
                 algorithms_names.append(name)
                 times.append(exec_time)
+
+                
 
         plotter = ExecutionTimePlotter(
             algorithms=algorithms_names, times=times)

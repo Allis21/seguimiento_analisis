@@ -5,7 +5,8 @@
 import re
 import time
 from reader_resources.algorithms_execution import AlgorithmsExecution
-
+from collections import Counter
+from tabulate import tabulate
 
 class AbstractProcessing:
     """
@@ -18,6 +19,24 @@ class AbstractProcessing:
                          "motivation", "persistence", "block", "mobile",
                          "application", "programming", "robotic", "scratch"]
         self.keywords_appereances = []
+
+    def display_frequency_table(self, words, title="Frequency Table"):
+        """
+        Display a frequency table of terms in the given list of words.
+        """
+        # Count the frequency of each word
+        frequency = Counter(words)
+
+        # Sort by frequency (descending) and alphabetically (ascending)
+        sorted_frequency = sorted(frequency.items(), key=lambda x: (-x[1], x[0]))
+
+        # Prepare the table data
+        table_data = [["Term", "Frequency"]]
+        table_data.extend(sorted_frequency)
+
+        # Print the table
+        print(f"\n{title}:\n")
+        print(tabulate(table_data, headers="firstrow", tablefmt="grid"))
 
     @staticmethod
     def separate_white_spaces(abstract):
@@ -36,6 +55,9 @@ class AbstractProcessing:
 
         # List that contains the algorithms to execute
         algorithms = [
+            AlgorithmsExecution.run_bubble_sort,
+            AlgorithmsExecution.run_bidirectional_bubble_sort,
+            AlgorithmsExecution.run_shell_sort,
             AlgorithmsExecution.run_binary,
             AlgorithmsExecution.run_bitonic,
             AlgorithmsExecution.run_bucket,
